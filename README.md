@@ -11,6 +11,9 @@ Technology that enables taking pictures remotely with the Nikon Camera
 - The taken pictures are stored on the camera. Also, notification is sent to the phone in form of SMS
 - Portability +  Accuracy +  Reliability = Useful Device 
 
+## Signal generated
+![signal1](https://bayesianadventures.files.wordpress.com/2013/08/pic4.png)
+
 ## Overall Architecture
 
 ## Hardware Specification
