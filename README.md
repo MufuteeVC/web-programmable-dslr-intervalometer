@@ -1,6 +1,8 @@
 # Web Programmable DSLR Intervalometer
 Wirelessly programmable timelapses for Nikon DSLRs using mbed and Raspberry Pi
 
+A demo can be found here: <https://youtu.be/Kc60NuQplL4>
+
 Developed and maintained by:
 - Mufutau Akuruyejo [@MufuteeVC](https://github.com/MufuteeVC)
 - Daniil Budanov [@danbudanov](https://github.com/danbudanov)
