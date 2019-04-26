@@ -147,7 +147,7 @@ specified in the `client.messages.create()` function
 
 ## Usage
 The app is run from the *python* directory using:
-```python
+```bash
 $ python3 app.py
 ```
 This starts the Flask server and spawns the interval thread.
@@ -164,5 +164,5 @@ the `Single` button on the web interface. The timelapse can now be started and s
 
 If SMS messaging through Twilio has been set up as mentioned before, the user's 
 mobile phone will now receive messages:
-![Phone messages](phone_sms.png)
+![Phone messages](images/phone_sms.png)
 
