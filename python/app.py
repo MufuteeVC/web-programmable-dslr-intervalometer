@@ -3,6 +3,7 @@ import RPi.GPIO as GPIO
 from time import sleep, time
 import os
 from twilio.rest import Client
+
 account_sid = "#######"
 auth_token = "#######"
 
@@ -104,4 +105,4 @@ if __name__== "__main__":
             name="interval_trigger")
     trigger_thread.start()
 
-    app.run(threaded=True)
+    app.run(host="0.0.0.0", threaded=True)
