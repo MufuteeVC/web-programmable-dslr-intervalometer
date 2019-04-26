@@ -87,7 +87,7 @@ def interval_trigger(tc):
                 client.messages.create(
                         to = "+14044572051",
                         from_="+14044767927",
-                        body = "Pictures are currently taking"
+                        body = "A photo was taken!"
                         )
             state = trigger_config.get("state")
             config_mutex.release()
@@ -100,6 +100,10 @@ def interval_trigger(tc):
             GPIO.output(8, GPIO.HIGH)
             trigger_mutex.release()
             sleep(sleep_interval)
+        if state:
+            config_mutex.acquire()
+            trigger_config["state"] = False
+            config_mutex.release()
             
 
 

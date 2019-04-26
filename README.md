@@ -66,7 +66,7 @@ The signal generation sequence is defined in `DslrIr::trigger()`.
 In the [Bayesian Adventures Blog](https://bayesianadventures.wordpress.com/2013/08/09/nikon-ml-l3-ir-remote-hack/),
 the authors have torn apart an existing Nikon ML-L3 IR DSLR remote and mapped
 the waveform it produces, as shown below:
-![Original Remote Waveform](images/og_waveforms.png | height=400)
+![Original Remote Waveform](images/og_waveforms.png)
 
 It should be noted that a baseband on-off keyed waveform is modulated onto a
 `38.4 kHz`, approximately `2/3` duty cycle carrier waveform. This is then 
@@ -99,19 +99,70 @@ And is modulated using OOK on top of the carrier wave:
 This code is than packaged into a more modular `DslrIr` library.
 
 
-### Overall Architecture
+### Web Application
+The web application is built in Python 3 and uses the `flask`, `twilio`, and 
+`RPi.GPIO` libraries.
 
-### Hardware Specification
+Necessary dependencies can be installed by running (preferably from a virtual
+environment):
+```bash
+$ cd python
+$ pip install -r requirements.txt
+```
 
-### Software Specification
-- Flask for creating the web page
-- Twilio for sending SMS
+All logic behind the timelapse application is contained in *python/app.py*, 
+and the template for the timelapse configuration webapp is in 
+*python/templates/main.html*.
 
-### Manual
-- The user sets the interval and how long the shots should be taken on the webpage.
-- Upon turning the power on, the system goes online
-- Pictures are taken automatically and stored in the SD Card
-- SMS sent to phone indicating process done
+#### Timelapse Webserver Code
+Both the webserver and the trigger signal to the mbed are controlled from 
+*app.py*.
 
-### Demo
-- 
+In order to use SMS functionality, the `USE_TWILIO` flag must be set to `True`,
+and the user's Twilio API keys must be entered into the `account_sid` and
+`auth_token` strings.
+
+The python application operates in two threads:
+* the `Flask app` thread, which handles the flask server and associated requests
+from the web app
+* the `interval_trigger` thread, which periodically triggers the camera's 
+shutter throughout a time duration at a given interval
+
+The `trigger_config` structure is used to store all information pertinent to the
+current timelapse, such as:
+* `state` - whether the timelapse is currently enabled
+* `interval_s` - the period at which the shutter is released 
+* `duration_s` - the total duration of the timelapse
+* `last_start_s` - the last time the timelapse was started
+
+The `trigger_config` is guarded by `config_mutex`, and is updated and read by
+both the web server and the `interval_trigger` thread. Setting `GPIO 8` to `LOW`
+commands the mbed to transmit the camera shutter sequence. Because this GPIO can
+be triggered by both the `interval_trigger` routine *and* by a `GET` request to
+the `/trigger` location, which is done by pressing the `Single` button in the
+web interface, a `trigger_mutex` lock is used on the pin.
+
+Lastly, the sending and receiving phone numbers and SMS message content may be 
+specified in the `client.messages.create()` function
+
+## Usage
+The app is run from the *python* directory using:
+```python
+$ python3 app.py
+```
+This starts the Flask server and spawns the interval thread.
+
+Opening a web browser from any device on the same network and navigating to
+`<IP address of Raspberry Pi>:5000`, the app shows up on the screen:
+![Web app](images/webapp.png)
+The desired interval and duration, in seconds, can be entered into their
+respective textboxes, and pressing `submit` configures the intervalometer. 
+
+At this point, the DSLR should be placed with its IR receiver facing the IR LED
+and the camera must be in remote control mode. A test shot may be fired by pressing
+the `Single` button on the web interface. The timelapse can now be started and stopped by pressing the `Start` or `Stop` button.
+
+If SMS messaging through Twilio has been set up as mentioned before, the user's 
+mobile phone will now receive messages:
+![Phone messages](phone_sms.png)
+
