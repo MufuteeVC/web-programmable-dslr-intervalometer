@@ -3,8 +3,8 @@ import RPi.GPIO as GPIO
 from time import sleep, time
 import os
 from twilio.rest import Client
-account_sid = "AC9b921e839c2469747669730140b6c153"
-auth_token = "638ee7ef6468cd476a6039fa0fb1416d"
+account_sid = "#######"
+auth_token = "#######"
 
 client = Client(account_sid, auth_token)
 
