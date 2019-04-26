@@ -1,12 +1,26 @@
 # Web Programmable DSLR Intervalometer
-Wirelessly programmable timelapses for Nikon DSLRs
+Wirelessly programmable timelapses for Nikon DSLRs using mbed and Raspberry Pi
 
 Developed and maintained by:
-- Mufutau Akuruyejo (@MufuteeVC)
-- Daniil Budanov (@danbudanov)
-- Georgiy Pyantkovsky (@Georgiyukr)
+- Mufutau Akuruyejo @MufuteeVC
+- Daniil Budanov @danbudanov
+- Georgiy Pyantkovsky @Georgiyukr
 
-# Project Description and API
+## Description
+In this project, we combine a **Raspberry Pi**-based webserver with an embedded 
+system running on the ARM **mbed**-enabled LPC1768 microcontroller to operate
+timelapses with user-defined intervals and durations on any Nikon DSLR
+supporting the Nikon ML-L3 IR Remote interface.
+
+A `Flask` web server runs on the Pi and provides a web interface to configure the
+timelapse. Once enabled, the Pi sends a trigger signal to the mbed periodically
+throughout the specified duration in seconds. The mbed modulates a `38.4 kHz`
+waveform with a control signal and transmits this using an IR LED to the camera. 
+
+Once a photo is taken, `twilio` is used to send an SMS notification to the user's
+phone that a photo has been taken. The user is able to start and stop the
+timelapse's operation at any time, as well as to fire a test image, using the
+web interface.
 
 ### Motivation
 - Technology that enables taking pictures remotely with the Nikon Camera
