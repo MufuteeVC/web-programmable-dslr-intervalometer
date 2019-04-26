@@ -2,9 +2,9 @@
 Wirelessly programmable timelapses for Nikon DSLRs using mbed and Raspberry Pi
 
 Developed and maintained by:
-- Mufutau Akuruyejo @MufuteeVC
-- Daniil Budanov @danbudanov
-- Georgiy Pyantkovsky @Georgiyukr
+- Mufutau Akuruyejo [@MufuteeVC](https://github.com/MufuteeVC)
+- Daniil Budanov [@danbudanov](https://github.com/danbudanov)
+- Georgiy Pyantkovsky [@Georgiyukr](https://github.com/Georgiyukr)
 
 ## Description
 In this project, we combine a **Raspberry Pi**-based webserver with an embedded 
