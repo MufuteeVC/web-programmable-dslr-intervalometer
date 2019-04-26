@@ -68,8 +68,12 @@
 		<h1>Configuration</h1>
 		<form method = "POST" action = "/send">
 			<div class = "from-group">
-				<input type = "text" name = "interval">
-				<input type = "text" name = "duration">
+				<div>
+					<strong>Interval: </strong><input type="text" name="interval" value="{{interval_s}}">
+				</div>
+				<div>
+					<strong>Duration: </strong><input type="text" name="duration" value="{{duration_s}}">
+				</div>
 			</div>
 			<input class="btn btn btn-primary" type="submit" value="submit">
 		</form>
