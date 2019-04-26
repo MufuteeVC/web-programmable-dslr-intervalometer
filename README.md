@@ -66,7 +66,7 @@ The signal generation sequence is defined in `DslrIr::trigger()`.
 In the [Bayesian Adventures Blog](https://bayesianadventures.wordpress.com/2013/08/09/nikon-ml-l3-ir-remote-hack/),
 the authors have torn apart an existing Nikon ML-L3 IR DSLR remote and mapped
 the waveform it produces, as shown below:
-![Original Remote Waveform](images/og_waveform.png)
+![Original Remote Waveform](images/og_waveforms.png)
 
 It should be noted that a baseband on-off keyed waveform is modulated onto a
 `38.4 kHz`, approximately `2/3` duty cycle carrier waveform. This is then 
