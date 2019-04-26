@@ -4,10 +4,12 @@ from time import sleep, time
 import os
 from twilio.rest import Client
 
-account_sid = "#######"
-auth_token = "#######"
+USE_TWILIO = False
+if USE_TWILIO:
+    account_sid = "#######"
+    auth_token = "#######"
 
-client = Client(account_sid, auth_token)
+    client = Client(account_sid, auth_token)
 
 from threading import Thread, Lock
 
@@ -74,18 +76,19 @@ def interval_trigger(tc):
         start_time = trigger_config.get("last_start_s")
         current_duration = trigger_config.get("duration_s")
         sleep_interval = trigger_config.get("interval_s")
-#        client.messages.create(
-#                to = "+14044572051",
-#                from_="+14044767927",
-#                body = "Pictures are currently taking"
-#            )
         
         config_mutex.release()
 
         while((time() < start_time + current_duration) and state):
             
             config_mutex.acquire()
-            print("Pictures are taking")
+            if USE_TWILIO:
+                print("Pictures are taking")
+                client.messages.create(
+                        to = "+14044572051",
+                        from_="+14044767927",
+                        body = "Pictures are currently taking"
+                        )
             state = trigger_config.get("state")
             config_mutex.release()
             if (state == False):
