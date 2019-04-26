@@ -34,6 +34,7 @@ The following parts are used in the project:
 
 ### Connections
 The system is wired as follows:
+
 ![hardware setup](images/breadboard.png)
 
 A `QED-123 880nm IR LED` is connected to the `mbed` microcontroller's `p21` in
@@ -76,6 +77,7 @@ The signal generation sequence is defined in `DslrIr::trigger()`.
 In the [Bayesian Adventures Blog](https://bayesianadventures.wordpress.com/2013/08/09/nikon-ml-l3-ir-remote-hack/),
 the authors have torn apart an existing Nikon ML-L3 IR DSLR remote and mapped
 the waveform it produces, as shown below:
+
 ![Original Remote Waveform](images/og_waveforms.png)
 
 It should be noted that a baseband on-off keyed waveform is modulated onto a
@@ -101,9 +103,11 @@ yielded parameters for the proper waveform:
 ![Complete waveform](images/scope_complete_waveform.png)
 
 The information signal is very precisely timed:
+
 ![Partial waveform](images/scope_part_waveform.png)
 
 And is modulated using OOK on top of the carrier wave:
+
 ![Carrier waveform](images/scope_modulated.png)
 
 This code is than packaged into a more modular `DslrIr` library.
@@ -164,7 +168,9 @@ This starts the Flask server and spawns the interval thread.
 
 Opening a web browser from any device on the same network and navigating to
 `<IP address of Raspberry Pi>:5000`, the app shows up on the screen:
+
 ![Web app](images/webapp.png)
+
 The desired interval and duration, in seconds, can be entered into their
 respective textboxes, and pressing `submit` configures the intervalometer. 
 
@@ -174,5 +180,6 @@ the `Single` button on the web interface. The timelapse can now be started and s
 
 If SMS messaging through Twilio has been set up as mentioned before, the user's 
 mobile phone will now receive messages:
+
 ![Phone messages](images/phone_sms.png)
 
