@@ -33,11 +33,12 @@ a `10k` resistor.
 
 All signalling operates on `3.3 V` logic.
 
-### Motivation
-- Technology that enables taking pictures remotely with the Nikon Camera
-- A programmable system that gives flexibility on the amount of shots to take and interval between them
-- The taken pictures are stored on the camera. Also, notification is sent to the phone in form of SMS
-- Portability +  Accuracy +  Reliability = Useful Device 
+## Software
+### Firmware
+Microcontroller firmware has been developed using the 
+[mbed Compiler IDE](https://ide.mbed.com/compiler) and can be found in the
+[DslrIrLib repository](https://os.mbed.com/users/danbudanov/code/DslrIrLib/) and
+in the [mbed folder](mbed).
 
 ### Signal generated
 ![signal1](https://bayesianadventures.files.wordpress.com/2013/08/pic4.png)
