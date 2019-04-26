@@ -23,6 +23,16 @@ timelapse's operation at any time, as well as to fire a test image, using the
 web interface.
 
 ## Hardware Setup
+### Parts
+The following parts are used in the project:
+* **NXP LPC1768 microcontroller**
+* **Raspberry Pi 3**
+* **QED-123 880nm IR LED**
+* 220 ohm resistor
+* 1k resistor
+* **Nikon DSLR**
+
+### Connections
 The system is wired as follows:
 ![hardware setup](images/breadboard.png)
 
