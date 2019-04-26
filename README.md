@@ -22,6 +22,17 @@ phone that a photo has been taken. The user is able to start and stop the
 timelapse's operation at any time, as well as to fire a test image, using the
 web interface.
 
+## Hardware Setup
+The system is wired as follows:
+![hardware setup](images/breadboard.png)
+
+A `QED-123 880nm IR LED` is connected to the `mbed` microcontroller's `p21` in
+series with a `220 ohm` current limiting resistor. A wire connects the
+Raspberry Pi's `GPIO8` to the mbed's `p20`, and this node is pulled up through
+a `10k` resistor.
+
+All signalling operates on `3.3 V` logic.
+
 ### Motivation
 - Technology that enables taking pictures remotely with the Nikon Camera
 - A programmable system that gives flexibility on the amount of shots to take and interval between them
